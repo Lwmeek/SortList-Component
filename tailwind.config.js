@@ -16,5 +16,5 @@ export default {
 			unfilledInput: "#E3E5F1",
 		},
 	},
-	plugins: [],
+	plugins: [require("daisyui")],
 };
