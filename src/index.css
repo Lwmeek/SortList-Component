@@ -14,3 +14,9 @@ body {
   align-items: center;
   background-color: #EFF6FF;
 }
+
+.skillList-container {
+  width: 717px;
+  height: 500px;
+  box-shadow: 0px 10px 30px 2px #0d206748;
+}
