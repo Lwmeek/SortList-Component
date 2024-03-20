@@ -4,6 +4,7 @@ import {
 	PlusIcon,
 	XMarkIcon,
 } from "@heroicons/react/24/solid";
+import { SuggestedSkills } from "../Data/SuggestedSkills";
 
 const SkillsList = () => {
 	const [expanded, setExpanded] = useState(false);
@@ -17,42 +18,18 @@ const SkillsList = () => {
 				<section className="text-white flex gap-x-16 justify-center font-medium">
 					<div className="flex flex-col">
 						<button
+							type="text"
 							className="bg-unfilledInput text-navyblue text-lg rounded-lg p-4 flex gap-8 items-center"
 							onClick={handleDropDown}
 						>
 							<p value="add">Add a Skill</p>
-							{expanded ? (
-								<XMarkIcon className="w-5" />
-							) : (
-								<ChevronDownIcon className="w-5" />
-							)}
+							<ChevronDownIcon className="w-5" />
 						</button>
 						{expanded ? (
-							<div className="options bg-black rounded-xl overflow-hidden duration-700">
-								<option
-									className="hover:bg-paleblue hover:cursor-pointer hover:duration-300"
-									value="hi"
-								>
-									hi
-								</option>
-								<option
-									className="hover:bg-paleblue hover:cursor-pointer hover:duration-300"
-									value="bye"
-								>
-									bye
-								</option>
-								<option
-									className="hover:bg-paleblue hover:cursor-pointer hover:duration-300"
-									value="yes"
-								>
-									yes
-								</option>
-								<option
-									className="hover:bg-paleblue hover:cursor-pointer hover:duration-300"
-									value="no"
-								>
-									no
-								</option>
+							<div className="bg-black rounded-xl overflow-hidden duration-700">
+								{SuggestedSkills.map(skill => (
+									<li key={skill.id} className="list-none">{skill.name}</li>
+								))}
 							</div>
 						) : (
 							""
