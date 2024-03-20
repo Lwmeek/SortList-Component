@@ -26,9 +26,14 @@ const SkillsList = () => {
 							<ChevronDownIcon className="w-5" />
 						</button>
 						{expanded ? (
-							<div className="bg-black rounded-xl overflow-hidden duration-700">
-								{SuggestedSkills.map(skill => (
-									<li key={skill.id} className="list-none">{skill.name}</li>
+							<div className="bg-unfilledInput rounded-xl overflow-hidden duration-700">
+								{SuggestedSkills.map((skill) => (
+									<li
+										key={skill.id}
+										className="list-none cursor-pointer text-navyblue hover:bg-bgColor"
+									>
+										{skill.name}
+									</li>
 								))}
 							</div>
 						) : (
