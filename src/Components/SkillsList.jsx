@@ -8,6 +8,7 @@ import { SuggestedSkills } from "../Data/SuggestedSkills";
 
 const SkillsList = () => {
 	const [expanded, setExpanded] = useState(false);
+	const [inputValue, setInputValue] = useState("");
 	const handleDropDown = () => {
 		setExpanded(!expanded);
 	};
@@ -22,15 +23,21 @@ const SkillsList = () => {
 							className="bg-unfilledInput text-navyblue text-lg rounded-lg p-4 flex gap-8 items-center"
 							onClick={handleDropDown}
 						>
-							<p value="add">Add a Skill</p>
+							<p value="add">{inputValue ? inputValue : "Add Skill"}</p>
 							<ChevronDownIcon className="w-5" />
 						</button>
 						{expanded ? (
 							<div className="bg-unfilledInput rounded-xl overflow-hidden duration-700">
 								{SuggestedSkills.map((skill) => (
 									<li
-										key={skill.id}
-										className="list-none cursor-pointer text-navyblue hover:bg-bgColor"
+										key={skill?.id}
+										className={`list-none cursor-pointer text-navyblue hover:bg-bgColor ${
+											skill?.name === inputValue ? "hidden" : "block"
+										}`}
+										onClick={() => {
+											setInputValue(skill?.name);
+											setExpanded(false);
+										}}
 									>
 										{skill.name}
 									</li>
