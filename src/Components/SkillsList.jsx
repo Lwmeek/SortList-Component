@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import Select from "react-select";
 import {
 	ChevronDownIcon,
 	PlusIcon,
@@ -14,47 +15,30 @@ const SkillsList = () => {
 		setExpanded(!expanded);
 	};
 
+	let buttonsElement = buttons.map((button, index) => (
+		<button
+			key={button?.id}
+			className="bg-unfilledInput text-navyblue text-lg rounded-lg p-4 flex justify-between gap-8 items-center w-80 h-16 mb-4"
+			onClick={() => {
+				if (index === button.id) {
+					setExpanded(!expanded);
+				}
+			}}
+		>
+			<div className="flex gap-1">
+				<p>{index + "."}</p>
+				<p>{inputValue ? inputValue : "Add Skill"}</p>
+			</div>
+			<ChevronDownIcon className="w-5" />
+		</button>
+	));
+
 	return (
 		<>
-			<div className="skillList-container bg-white rounded-2xl p-16">
-				<section className="text-white flex gap-x-16 justify-center font-medium">
+			<section className="skillList-container bg-white rounded-2xl p-16">
+				<div className="text-white flex gap-x-16 justify-center font-medium">
 					<div className="flex flex-col">
-						{buttons.map((button) => (
-							<button
-								key={button?.id}
-								className="bg-unfilledInput text-navyblue text-lg rounded-lg p-4 flex justify-between gap-8 items-center w-80 h-16 mb-4"
-								onClick={handleDropDown}
-							>
-								<div className="flex gap-1">
-									<p>
-										{button?.number + '.'}
-									</p>
-									<p>{inputValue ? inputValue : "Add Skill"}</p>
-								</div>
-								<ChevronDownIcon className="w-5" />
-							</button>
-						))}
-
-						{expanded ? (
-							<div className="bg-unfilledInput rounded-xl overflow-hidden duration-700">
-								{SuggestedSkills.map((skill) => (
-									<li
-										key={skill?.id}
-										className={`list-none cursor-pointer text-navyblue hover:bg-bgColor ${
-											skill?.name === inputValue ? "hidden" : "block"
-										}`}
-										onClick={() => {
-											setInputValue(skill?.name);
-											setExpanded(false);
-										}}
-									>
-										{skill.name}
-									</li>
-								))}
-							</div>
-						) : (
-							""
-						)}
+						<Select options={SuggestedSkills} />
 					</div>
 
 					<div>
@@ -66,8 +50,8 @@ const SkillsList = () => {
 							<p className="text-paleblue font-normal text-base">HTML</p>
 						</div>
 					</div>
-				</section>
-			</div>
+				</div>
+			</section>
 		</>
 	);
 };
